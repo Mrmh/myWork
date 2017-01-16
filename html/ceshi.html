@@ -1,0 +1,21 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <meta charset="UTF-8" />
+    <!--<script src="angular.min.js"></script>-->
+    <script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script>
+  </head>
+  <body>
+    <div ng-controller = "myName">
+      <h1>{{"李梦辉"}}</h1>
+      <h1>{{name}}</h1>
+      <h1 ng-bind = "name"></h1>
+    </div>
+  </body>
+  <script type="text/javascript">
+  	function myName($scope){
+  		$scope.name = "李梦辉";
+  	}
+  </script>
+</html>
+

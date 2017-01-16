@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
+<head>
+  <meta charset="UTF-8" />
+  <title>show-hide</title>
+  <script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script>
+  <script>
+    var app = angular.module('app', []);
+    app.controller('showHideController', function ($scope) {
+      $scope.isShow = true;
+      $scope.showorhide = function () {
+        $scope.isShow = !$scope.isShow;
+        $scope.animal = '';
+      }
+    });
+  </script>
+  <style>
+    .div1 {
+      border: 2px solid pink;
+      background-color: plum;
+    }
+    .div2{
+      border: 2px solid plum;
+      background-color: pink;
+    }
+    .text{
+      width:60px;
+      height:30px;
+      background:gray;
+      border:0;
+    }
+  </style>
+</head>
+<body>
+  <div ng-controller="showHideController">
+    <div ng-show="isShow" class="div1">this is a div which is show</div>
+    <div ng-show="!isShow" class="div2">this is a div which is hide</div>
+    <button ng-click="showorhide()">按钮</button>
+    <!-- 花括号表达式，显示结果 -->
+    <h1>isShow : {{isShow}}</h1>
+    
+    <input type="text" ng-model="animal" placeholder="请输入一种动物" value="" class="text" />
+    <!-- 当input输入为dog时，下面div才会出现 -->
+    <div ng-show="animal == 'dog'">dog</div>
+  </div>
+</body>
+<!-- 总结：ng-show和ng-hide都是控制一个布尔值来改变元素的显示与隐藏的 -->
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+  <input type="text" id="text" value = "input对象">
+  <script>
+    function Obj(){
+      this.value = "对象！";
+    }
+    var value = "global对象！";
+    function fun1(){
+      console.log(this.value);
+    }
+    window.fun1();
+    fun1.call(window);
+    fun1.call(document.getElementById("text"));
+    fun1.call(new Obj);
+    console.log("=================================");
+    fun1.apply(window);
+    fun1.apply(document.getElementById("text"));
+    fun1.apply(new Obj);
+    // 总结：外面调用里面的方法，fun1.call(fun,var1,var2,var3);
+    //                           fun1.apply(fun,[var1,var2,var3]);
+  </script>
+  </body>
+</html>
+

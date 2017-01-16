@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+  <script>
+    function Person(name, age, job){
+      this.name = name;
+      this.age = age;
+      this.job = job;
+      this.friends = ["呵呵哒", "么么哒"];
+    };
+    Person.prototype = {
+      constructor : Person,
+      sayName : function(){
+        console.log(this.name);
+      }
+    };
+    var person1 = new Person("李民浩", 20, "明星");
+    var person2 = new Person("刘明辉", 24, "程序员");
+    person1.friends.push("帅帅哒");
+    console.log(person1.friends);
+    console.log(person2.friends);
+    console.log(person1.friends == person2.friends);
+    console.log(person1.sayName == person2.sayName);
+  </script>
+  </body>
+</html>
+

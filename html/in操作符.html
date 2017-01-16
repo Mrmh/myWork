@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+  <script>
+    var o = {
+      toString : function(){
+        return "my object"
+      }
+    }
+    for(var prop in o){
+      if(prop == "toString"){
+        console.log("find toString!");
+      }
+    }
+  </script>
+  </body>
+</html>
+

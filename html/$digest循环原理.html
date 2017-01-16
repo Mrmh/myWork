@@ -1,0 +1,34 @@
+<!doctype html>
+<html ng-app = "myapp">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script>
+  </head>
+  <body>
+    <div ng-controller = "mycrtl">
+      show message:{{message}}
+    </div>
+  </body>
+  <script>
+    angular.module('myapp',[])
+      .controller('mycrtl', function($scope){
+        function getMessage(){
+          setTimeout(function(){
+            $scope.$apply(setTimeShow);
+            // $scope.$apply(function(){
+              // $scope.message = 'hahahahhahahhhhahahaa';
+              // console.log('$scope.message:' +$scope.message);
+            // });
+          },2000);
+        }
+        getMessage();
+        function setTimeShow(){
+          $scope.message = 'hahahahhahahhhhahahaa';
+          console.log('$scope.message:' +$scope.message);
+        }
+      });
+  </script>
+</html>
+
+$scope.$apply()会自动调用$rootscope.$digest(),然后周期性的运行检查数据是否有变化
+在$digest循环中，watcher会被触发

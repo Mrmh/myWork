@@ -1,0 +1,48 @@
+<!doctype html>
+<html ng-app = "app">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="angular.min.js"></script>
+  </head>
+  <body>
+    <button add-book-button>Add book</button>
+  </body>
+  <script type="text/javascript">
+  var module = angular.module('app', []);
+    module.service('Book', ['$rootscope', function($rootscope){
+      var service = {
+        books:[
+          {title:'lmh',like:'羽毛球'},
+          {title:'wy',like:'十字绣'}
+        ],
+        addBook:function(book){
+          service.books.push(book);
+          $rootscope.$broadcast('books.update')
+        }
+      }
+      return service;
+    }]);
+    var ctrl = ['$scope', 'Book', function(scope, Book){
+      book.$on('books.update',function(event){
+        scope.books = Book.books;
+        // scope.$apply();
+      })
+    }];
+    module.controller('books.list', ctrl);
+    module.directive('addBookButton', ['Book', function(Book){
+      return{
+        restirct:'A',
+        link:function(scope, element, attrs){
+          element.bind('click', function(){
+            consoloe.log(1);
+            Book.addBook({
+              title:'hehe',
+              author:'呵呵哒'
+            });
+          });
+        }
+      }
+    }])
+
+  </script>
+</html>

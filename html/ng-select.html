@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
+<head>
+    <meta charset="UTF-8" />
+    <title>select</title>
+    <script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script>
+    <script>
+        var app = angular.module('app', []);
+        app.controller('selectController', function ($scope) {
+            $scope.mycity = '北京';
+            $scope.Cities = [{ id: 1, name: '北京',group:'中国'}, { id: 2, name: '上海',group:'中国' }, { id: 3, name: '广州',group:'中国' }];
+        });
+    </script>
+</head>
+<body>
+    <div ng-controller="selectController">
+        <select ng-model="mycity" ng-options="city.name as city.name group by city.group for city in Cities"></select>
+        <h1>欢迎来到{{mycity}}</h1>
+    </div>
+</body>
+</html>

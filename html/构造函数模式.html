@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+  <script>
+    function Person(name, age, job){
+      this.name = name;
+      this.age = age;
+      this.job = job;
+      this.sayName = function(){
+        console.log(this.name);
+      };
+      // this.sayName();
+      // 构造函数模式不需要return，前提是要有new关键字
+    }
+    var person1 = new Person('李梦辉', 24, "程序员");
+    console.log(person1.name);
+    console.log(person1.constructor == Person);
+    console.log(person1 instanceof Person);
+    var person2 = new Person('王燕', 24, "会计");
+    console.log(person2.name);
+    console.log("-----------------------------------");
+    var o = new Object();
+    Person.call(o,"呵呵哒", 20, "架构师"); 
+    o.sayName();
+    console.log("-----------------------------------");
+    Person.apply(o,["么么哒", 24, "产品经理"]);
+    o.sayName();  
+
+  </script>
+  </body>
+</html>
+

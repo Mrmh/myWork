@@ -1,0 +1,60 @@
+<!doctype html>
+<html ng-app = 'app'>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script>
+    <style>
+      .img-q1{
+        color:plum;
+      }
+      .img-q2{
+        color:pink;
+      }
+      .img-q3{
+        color:white;
+      }
+      .img-q4{
+        color:red;
+      }
+      .img-q5{
+        color:yellow;
+      }
+      .img-q6{
+        color:blue;
+      }
+    </style>
+  </head>
+  <body ng-controller="test">
+    <h1>lmh</h1>
+    <ul>
+      <li ng-repeat="active in activities">
+        <p ng-class="img-{{active.class}}">{{active.name}}</p>
+      </li>
+    </ul>
+    <lmh class="course"></lmh>
+  </body>
+  <script>
+  var app = angular.module('app', []);
+  app.controller('test', function($scope){ 
+      $scope.activities = [ 
+        { "name": "Wake up" ,"class":"q1" }, 
+        { "name": "Brush teeth" ,"class":"q2" }, 
+        { "name": "Shower" ,"class":"q3" }, 
+        { "name": "Have breakfast" ,"class":"q4" }, 
+        { "name": "Go to work" ,"class":"q5" }, 
+        { "name": "Write a Nettuts article" ,"class":"q6" }, 
+        { "name": "Go to the gym" ,"class":"q7" }, 
+        { "name": "Meet friends" ,"class":"q8" }, 
+        { "name": "Go to bed" ,"class":"q9" } 
+      ]; 
+     });
+  app.directive('lmh',function(){
+      return{
+        restrict:'E',   //指定自定义的为element
+        replace:true,
+        transclude:true,
+        template:'<div ng-transclude>李梦辉</div>'
+      }
+  });
+  </script>
+</html>

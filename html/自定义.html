@@ -1,0 +1,24 @@
+<!doctype html>
+<html ng-app = "app">
+  <head>
+    <meta charset="UTF-8" />
+    <!--<script src="angular.min.js"></script>-->
+    <script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script>
+  </head>
+  <body>
+    <div ng-controller = "myName">
+      <h1>{{name}}</h1>
+      <h1>{{yourname}}</h1>
+    
+    </div>
+  </body>
+  <script type="text/javascript">
+  	angular.module('app',[])
+  		.value('a','王燕')
+    	.controller('myName', function($scope,a){
+  			$scope.name = "李梦辉";
+  			$scope.yourname = a;
+  		})
+  </script>
+</html>
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
+<head>
+    <meta charset="UTF-8" />
+    <title>select</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .expander{
+            border:1px solid plum;
+            width:250px;
+        }
+        .expander>.title{
+            background:block;
+            color:pink;
+            padding:.1em .3em;
+            cursor:pointer;
+        }
+        .expander>.body{
+            padding:.1em .3em;
+        }
+    </style>
+    <!-- <script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script> -->
+    <script src="angular.min.js"></script>
+    <script>
+        var app = angular.module('app', [], function(){
+            console.log("测试");
+
+        });
+        app.controller('mycontroller',function($scope, $rootScope){
+            $scope.title = "最喜欢吃的水果";
+            $scope.text = "荔枝";
+            $rootScope.text = "芒果";
+            function lmh(){
+                console.log("根作用域的范围----"+$rootScope.text);
+            };
+            lmh();
+        });
+        app.directive('expander',function(){
+            return{
+                restrict:'E',
+                replace:true,
+                transclude:true,
+                scope : {
+                    title : '=expanderTitle'
+                },
+                template:'<div>'
+                    +'<div class="title" ng-click = "toggle()">{{title}}</div>'
+                    +'<div class="body" ng-show = "showMe" ng-transclude></div>'                
+                    +'</div>',
+                link:function(scope, element, attrs){
+                    scope.showMe = false;
+                    scope.toggle =function toggle(){
+                        scope.showMe = !scope.showMe;
+                    }
+                }
+            }
+        });
+        app.controller('yourcontroller', function($scope){
+
+        });
+    </script>
+</head>
+<body>
+    <div ng-controller = "mycontroller">
+        <expander class="expander" expander-title = "title">
+            {{text}}
+        </expander>
+    </div>
+    <div ng-controller = "yourcontroller">
+        {{text}}
+        
+    </div>
+</body>
+</html>

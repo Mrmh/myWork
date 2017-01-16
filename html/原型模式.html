@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+  <script>
+    function Person(){};
+    Person.prototype.name = "李民浩";
+    Person.prototype.age = "24";
+    Person.prototype.job = "明星";
+    Person.prototype.sayName = function(){
+      console.log(this.name);
+    };
+    var person1 = new Person();
+    person1.sayName();
+    var person2 = new Person();
+    person2.sayName();
+    console.log(person1.sayName() == person2.sayName());
+    console.log(Person.prototype.isPrototypeOf(person1));
+
+    // 更完整的原型模式
+    console.log("新的原型模式=====================");
+    function Person(){};
+      Person.prototype ={
+        name : "李民浩",
+        age : "24",
+        job : "明星",
+        sayName : function(){
+          console.log(this.name);
+        }
+    }
+    var person1 = new Person();
+    person1.sayName();
+    var person2 = new Person();
+    person2.sayName();
+    console.log(person1.sayName() == person2.sayName());
+    console.log(Person.prototype.isPrototypeOf(person1));
+  </script>
+  </body>
+</html>
+

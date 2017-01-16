@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app = "app">
+  <head>
+    <meta charset="UTF-8" />
+    <!--<script src="angular.min.js"></script>-->
+    <script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script>
+  </head>
+  <body>
+    <div ng-controller = "myName">
+      <h1>{{name}}</h1>
+      <!--<h1>{{$parent.name}}</h1>-->
+    </div>
+    <div ng-controller = "yourName">
+      <h1>{{name}}</h1>
+    </div>
+    <div ng-controller = "hersName">
+      <h1>{{name}}</h1>
+    </div>
+  </body>
+  <script type="text/javascript">
+  	var app = angular.module('app', []);
+  	//angular的作用域有两个 $rootScope(相对于一个模块的数据) $scope(相对于一个controller的数据)
+  	app.controller('myName',function($scope){
+  		$scope.name = "我是子作用域";
+  	});
+	
+		app.controller('yourName',function($scope){
+			$scope.phone = "18345556097";
+		});
+
+    app.controller('hersName', function($rootScope){
+      $rootScope.name = "我是根作用域";
+    })
+  </script>
+</html>
+

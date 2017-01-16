@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myapp">
+<head>
+    <meta charset="UTF-8" />
+    <script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script>
+    <title>class</title>
+    <script>
+        var app = angular.module('myapp', []);
+        app.controller('ColorController', function ($scope) {
+            $scope.users = [{ id: 1, name: 'wolfy', age: 20 }, { id: 2, name: 'wolfy2', age: 20 }, { id: 3, name: 'wolfy3', age: 20 }];
+        });
+    </script>
+    <style>
+        .main {border: 1px solid #0094ff;width: 100%;}
+        .list {margin: 8px auto;width: 90%;text-align: center;}
+        .even {background-color: plum;}
+        .odd {background-color: pink;}
+    </style>
+</head>
+<body>
+    <div ng-class="'main'" ng-controller="ColorController">
+        <h2>示例一</h2>
+        <table ng-class="'list'" border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>年龄</th>
+            </tr>
+            <tr ng-repeat="user in users" ng-class-even="'even'" ng-class-odd="'odd'" >
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.age}}</td>
+            </tr>
+        </table>
+        <h2>示例二</h2>
+        <table ng-class="'list'" border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>年龄</th>
+            </tr>
+            <tr ng-repeat="user in users" ng-class="($index+1)%2==0?'even':'odd'">
+            <!-- <tr ng-repeat="user in users" ng-class-even="'odd'" ng-class-odd="'even'" > -->
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.age}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

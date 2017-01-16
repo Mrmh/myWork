@@ -1,0 +1,56 @@
+<!doctype html>
+<html ng-app = "app">
+  <head>
+    <meta charset="UTF-8" />
+    <!--<script src="angular.min.js"></script>-->
+    <script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script>
+  </head>
+  <body>
+  	<div ng-controller = "myName">
+  		<!--filter内置过滤器-->
+  		<div>{{money | currency : '￥'}}</div>
+  		<!--自定义filter-->
+  		<div>{{money | myFilter : '元'}}</div>	
+  		<div>{{phone}}</div>
+  		<div>{{birthday | date : 'yyyy年MM月dd日'}}</div>
+  		
+  		<!--input双向绑定，动态查询数组-->
+  		<input type="text" ng-model = "condition" />
+  		<div ng-repeat = "user in users | filter : condition">
+  			<span>{{user.name}}</span>
+  			<span>{{user.phone}}</span> 
+  		</div>
+  		<hr>
+  		<div ng-repeat = "user in users | filter : func">
+  			<span>{{user.name}}</span>
+  			<span>{{user.phone}}</span> 
+  		</div>
+  	</div>
+  </body>
+  <script type="text/javascript">
+  angular.module('app',[])
+  	.controller('myName', function($scope){
+  		
+  		$scope.money = 1000000;
+  		$scope.phone = 18345557096;
+  		$scope.birthday = new Date();
+  		var users = [
+  			{id:'1',name:'李梦辉',phone:'18345557096'},
+  			{id:'2',name:'王燕',phone:'18345558028'},
+  			{id:'3',name:'老爸',phone:'13538495539'},
+  			{id:'4',name:'老妈',phone:'18345557096'}
+  		];
+  		$scope.users = users;
+  		
+  		$scope.func = function(user){
+  			return user.id>=	3;
+  		}
+  	})
+  	.filter('myFilter', function(){
+  		return function(value, param){
+  			return value+' '+param;
+  		}
+  	})
+  </script>
+</html>
+

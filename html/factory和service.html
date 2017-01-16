@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script>
+  </head>
+  <body>
+    <div ng-app="app">
+      <p ng-controller="myctrl">{{hello}}</p>
+    </div>
+  </body>
+  <script>
+  //factory==========================================
+    // angular.module('app',[])
+    //   .controller('myctrl', function($scope, myFactory){
+    //     $scope.hello = myFactory.getHello();
+    //   })
+    //   .factory('myFactory', function(){
+    //     var _hello = 'hello';
+    //     var factory = {};
+    //     factory.getHello = function(){
+    //       return _hello;
+    //     }
+    //     return factory;
+    //   });
+  //service===========================================
+    angular.module('app',[])
+      .controller('myctrl',function($scope,myService){
+    　　$scope.hello = myService.getHello();
+      })
+      .factory('myService',function(){
+    　　var _hello = 'hello';
+        var factory = {};
+    　　this.getHello = function(){
+    　　　　return _hello;
+    　　}
+    　　return factory;
+      });
+  </script>
+  
+</html>
+

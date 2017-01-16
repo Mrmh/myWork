@@ -1,0 +1,47 @@
+<!doctype html>
+<html ng-app = 'app'>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script>
+  </head>
+  <body ng-controller="test">
+    <input ng-model = "msg" />
+    <!-- <p my-dctv>{{msg | myUpperFilter}}</p> -->
+    <my-dctv></my-dctv>
+  </body>
+  <script>
+  var app = angular.module('app', []);
+  app.controller('test', function($scope){ 
+      $scope.msg = "my name is limenghui";
+    });
+  app.filter('myUpperFilter', function(){ //过滤器
+    return function(input){
+      return input.toUpperCase(); // 强制转换为大写
+    }
+  })
+  app.directive('myDctv',function(){
+      return {
+          restrict:'E',
+          replace:true,
+          transclude:true,
+          template:'<p my-dctv>{{msg | myUpperFilter}}</p>',
+          link:function(scope, element, attrs){
+                element.bind("mouseenter", function(){
+                  element.css("background","plum");
+                });
+                element.bind("mouseleave", function(){
+                  element.css("background","none");
+                });
+          }
+      }
+  });
+  // app.directive('lmh', function(){
+  //   return {
+  //     restrict:'E',
+  //     replace:true,
+  //     transclude:true,
+  //     template:'<p my-dctv>{{msg | myUpperFilter}}</p>'
+  //   }
+  // });
+  </script>
+</html>

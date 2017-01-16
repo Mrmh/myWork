@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
+<head>
+    <meta charset="UTF-8" />
+    <title>select</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+    </style>
+    <script src="angular.min.js"></script>
+    <script>
+        var app = angular.module('app', [], function(){
+            console.log("hello");
+        });
+        function creatDirective(name){
+            return function(){
+                return{
+                    restrict:'E',
+                    compile:function(tElem, tAttrs){
+                        console.log(name + ":compile");
+                        return {
+                            pre:function(scope, iElem, iAttrs){
+                                console.log(name + ":pre link");
+                            },
+                            post:function(scope, iElem, iAttrs){
+                                console.log(name + ":post link");
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        app.directive('levelOne',creatDirective('levelOne'));
+        app.directive('levelTwo',creatDirective('levelTwo'));
+        app.directive('levelThree',creatDirective('levelThree'));
+    </script>
+</head>
+<!-- 指令的本质其实是一个替换过程。compile（编译）和link（连接） -->
+<body>
+    <level-one>
+        <level-two>
+            <level-three>
+                Hello 
+            </level-three>
+        </level-two>
+    </level-one>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app>
+  <head>
+      <meta charset="utf-8">
+      <title>ng-bind directive</title>
+  </head>
+  <body ng-controller="HelloController">
+    <div>
+        <p>直接输出字符串字面值</p>
+        Hello {{"World"}}
+        <hr>
+    </div>
+
+    <div>
+        <p>使用占位符输出变量</p>
+        Hello {{greeting}}
+        <hr>
+    </div>
+
+    <div>
+        <p>使用ng-bind指令输出变量</p>
+        Hello <span ng-bind="greeting"></span>
+        <hr>
+    </div>
+
+    <script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script>
+    <script>
+        function HelloController($scope) {
+            $scope.greeting = "World";
+        }
+    </script>
+  </body>
+</html>

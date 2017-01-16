@@ -1,0 +1,47 @@
+<!doctype html>
+<html ng-app = "app">
+  <head>
+    <meta charset="UTF-8" />
+    <!--<script src="angular.min.js"></script>-->
+    <script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script>
+  </head>
+  <body>
+  	<table ng-controller = "myName" border = "1">
+  		<tr>
+  			<td>id</td>
+  			<td>name</td>
+  			<td>phone</td>
+  			<td>index</td>
+  			<td>操作</td>
+  		</tr>
+  		<tr ng-repeat = "user in users">
+  			<td>{{user.id}}</td>
+  			<td>{{user.name}}</td>
+  			<td>{{user.phone}}</td>
+  			<td>{{$index}}</td>
+  			<td>
+  				<button ng-click = "testIndex($index)">删除</button>
+  			</td>
+  		</tr>
+  	</table>
+  </body>
+  <script type="text/javascript">
+  angular.module('app',[])
+  	.controller('myName', function($scope){
+  		var users = [
+  			{id:'1',name:'李梦辉',phone:'18345557096'},
+  			{id:'2',name:'王燕',phone:'18345558028'},
+  			{id:'3',name:'老爸',phone:'13538495539'},
+  			{id:'4',name:'老妈',phone:'18345557096'}
+  		];
+  		$scope.users = users;
+  		
+  		$scope.testIndex = function(index){
+  			console.log("testIndex......"+index);
+  			$scope.users.splice(index,1);
+  		}
+  		
+  	});
+  </script>
+</html>
+

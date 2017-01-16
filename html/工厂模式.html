@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+  <script>
+  //也叫作寄生构造函数模式
+    function createPerson(name, age, job){
+      var o = new Object();
+      o.name = name;
+      o.age = age;
+      o.job = job;
+      o.sayName = function(){
+        console.log(this.name);
+      };
+      o.sayName();
+      return o;
+    }
+    var person1 = createPerson('李梦辉', 24, "程序员");
+    person1.sayName();
+    console.log(person1.name);
+    console.log(person1.constructor == createPerson);
+    var person2 = createPerson('王燕', 24, "会计");
+    console.log(person2.name);
+  </script>
+  </body>
+</html>
+
